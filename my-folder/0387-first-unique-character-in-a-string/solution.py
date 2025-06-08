@@ -1,28 +1,24 @@
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-    # add chars to a hashmap
-    # with index as value
-    # if not already in hashmap
-    # if in hashmap set to -1
+        
+        # make an empty hash map
         count = {}
 
-        for i, c in enumerate(s):
-            if c in count:
-                count[c] = -1
-            else:
-                count[c] = i
-
-    # once done return the lowest of values greater than -1
-    # if none > -1 return -1
-
-        lowest_index = [n for n in count.values() if n > -1]
-        if lowest_index:
-            return lowest_index[0]
-        else:
-            return -1
+        # for each char in string:
+        for char in s:
+        #     if char not in hash:
+            if char not in count:
+        #         set value to 0
+                count[char] = 0
+        #     inc count by 1
+            count[char] += 1
 
 
-
-
-
+        # for each index, char in string:
+        for i in range(len(s)):
+        #     if value of char in hash == 1
+            if count[s[i]] == 1:
+        #         return index
+                return i
+        return -1
 
