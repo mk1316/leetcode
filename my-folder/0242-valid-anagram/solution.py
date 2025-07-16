@@ -1,13 +1,26 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
+        # check their lens - if not = return false
         if len(s) != len(t):
             return False
 
-        hashT, hashS = {}, {}
-        
-        for i in range(len(s)):
-            hashT[t[i]] = 1 + hashT.get(t[i], 0)
-            hashS[s[i]] = 1 + hashS.get(s[i], 0)
-        return hashT == hashS
+        chars = {}
 
+        for char in s:
+            if char in chars:
+                chars[char] += 1
+            else:
+                chars[char] = 1
         
+        for char in t:
+            if char not in chars:
+                return False
+            else:
+                if chars[char] == 1:
+                    del chars[char]
+                else:
+                    chars[char] -= 1
+        
+        if chars:
+            return False
+        return True
