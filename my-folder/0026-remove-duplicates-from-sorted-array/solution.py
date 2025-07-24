@@ -1,12 +1,9 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        prev_num = -101
-        for num in nums[:]:
-            if num == prev_num:
-                nums.remove(num)
-                prev_num = num
-            else:
-                prev_num = num
-        
-        
+        l = 1
 
+        for r in range(1, len(nums)):
+            if nums[r] != nums[r-1]:
+                nums[l] = nums[r]
+                l += 1
+        return l
